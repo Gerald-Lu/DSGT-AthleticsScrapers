@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+import requests
 
 with open('home.html', 'r') as file:
     content = file.read()
