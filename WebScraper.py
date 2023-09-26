@@ -1,13 +1,28 @@
 from bs4 import BeautifulSoup
 import requests
+import csv
+import json
+import pandas as pd
 
-with open('home.html', 'r') as file:
-    content = file.read()
-    print(content)
-    soup = BeautifulSoup(content, 'lxml')
-    #courses = soup.find_all('h5')
-    course_cards = soup.find_all('div', class_='card')
-    for c in course_cards:
-        course_name = c.h5.text
-        course_price = c.a.text.split()[-1]
-        print(f'{course_name} costs {course_price}')
+url = "https://data.ncaa.com/casablanca/game/6136947/pbp.json"
+
+payload = {}
+headers = {
+  'Cookie': 'akacd_ems=1695693092~rv=26~id=28e986e49e28e11009c7adfe5b3da9da'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+play_by_play = response.json()
+
+periods = play_by_play['periods']
+
+play = play_by_play['playStats']
+
+#output.to_csv('playByPlayTest.csv', index = False)
+
+
+
+
+
+
