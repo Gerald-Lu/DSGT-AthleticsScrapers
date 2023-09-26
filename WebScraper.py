@@ -13,13 +13,28 @@ headers = {
 
 response = requests.request("GET", url, headers=headers, data=payload)
 
-play_by_play = response.json()
+data = response.json()
 
-periods = play_by_play['periods']
+playByPlayData = data['periods'][0]['playStats']
 
-play = play_by_play['playStats']
 
-#output.to_csv('playByPlayTest.csv', index = False)
+dataOut = open('playByPlayTest.csv','w')
+
+writer = csv.writer(dataOut)
+
+count = 0
+
+for period in playByPlayData:
+    if count==0:
+        header = period.keys()
+        print(header)
+        writer.writerow(header)
+        count+= 1
+    writer.writerow(period.values())
+dataOut.close()
+#print(play_by_play['periods'][0]['periodNumber'])
+
+
 
 
 
