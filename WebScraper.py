@@ -4,6 +4,7 @@ import csv
 import json
 import pandas as pd
 
+#GETs the json file by simulating the request
 url = "https://data.ncaa.com/casablanca/game/6136947/pbp.json"
 
 payload = {}
@@ -13,17 +14,19 @@ headers = {
 
 response = requests.request("GET", url, headers=headers, data=payload)
 
+#json data stored in 'data' variable, where we can access data in the json file as a dictionary
 data = response.json()
 
 playByPlayData = data['periods'][0]['playStats']
 
-
+#writes a csv file where the data will be stored
 dataOut = open('playByPlayTest.csv','w')
 
+#initiates a csv writer
 writer = csv.writer(dataOut)
 
+#Appends headers and corresponding values to .csv file
 count = 0
-
 for period in playByPlayData:
     if count==0:
         header = period.keys()
