@@ -12,12 +12,15 @@ def fetch_data(team_url):
         # Extract headers
         headers = [header.get_text(strip=True) for header in table.find_all('th')]
         #print(headers)
-        
+        body = table.find('tbody')
+        #print(body)
         # Extract row data
-        rows = table.find_all('tr')[1:]  # skip the header row
+        #rows = body.find_all('td') 
+        #print(rows)
         table_data = []
-        for row in rows:
-            cells = row.find_all('td')
+        for cells in body:
+            cells = body.find_all('td')
+            #print(cells)
             row_data = [cell.get_text(strip=True) for cell in cells]
             table_data.append(row_data)
         
@@ -39,7 +42,6 @@ def fetch_data(team_url):
 # Fetch data for both teams
 auburn_data = fetch_data("https://hoop-math.com/Auburn2023.php")
 georgia_tech_data = fetch_data("https://hoop-math.com/GeorgiaTech2023.php")
-print(georgia_tech_data)
 
 # Printing the fetched data
 
@@ -47,11 +49,10 @@ for team, data in [("Auburn", auburn_data), ("Georgia Tech", georgia_tech_data)]
     print(f"\n{team} Offensive Transition Splits:")
     print(data['offensive_transition']['headers'])
     for row in data['offensive_transition']['data']:
-        print(row)
+        print(row, "\n\n")
 
     print(f"\n{team} Defensive Transition Splits:")
     print(data['defensive_transition']['headers'])
     for row in data['defensive_transition']['data']:
-        print(row)
-
-print(georgia_tech_data['offensive_transition']['data'])
+        print(row, "\n\n")
+#print(georgia_tech_data['offensive_transition']['data'])
