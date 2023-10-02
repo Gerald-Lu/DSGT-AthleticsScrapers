@@ -11,6 +11,7 @@ def fetch_data(team_url):
     def parse_table(table):
         # Extract headers
         headers = [header.get_text(strip=True) for header in table.find_all('th')]
+        #print(headers)
         
         # Extract row data
         rows = table.find_all('tr')[1:]  # skip the header row
@@ -38,8 +39,10 @@ def fetch_data(team_url):
 # Fetch data for both teams
 auburn_data = fetch_data("https://hoop-math.com/Auburn2023.php")
 georgia_tech_data = fetch_data("https://hoop-math.com/GeorgiaTech2023.php")
+print(georgia_tech_data)
 
 # Printing the fetched data
+
 for team, data in [("Auburn", auburn_data), ("Georgia Tech", georgia_tech_data)]:
     print(f"\n{team} Offensive Transition Splits:")
     print(data['offensive_transition']['headers'])
@@ -47,7 +50,7 @@ for team, data in [("Auburn", auburn_data), ("Georgia Tech", georgia_tech_data)]
         print(row)
 
     print(f"\n{team} Defensive Transition Splits:")
-    print(data['defensive_transition']['data'])
+    print(data['defensive_transition']['headers'])
     for row in data['defensive_transition']['data']:
         print(row)
 
