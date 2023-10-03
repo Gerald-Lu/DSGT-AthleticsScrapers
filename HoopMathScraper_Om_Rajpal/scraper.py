@@ -18,11 +18,12 @@ def fetch_data(team_url):
         #rows = body.find_all('td') 
         #print(rows)
         table_data = []
-        for cells in body:
-            cells = body.find_all('td')
+        #for cells in body:
+        cells = body.find_all('td')
             #print(cells)
-            row_data = [cell.get_text(strip=True) for cell in cells]
-            table_data.append(row_data)
+        row_data = [cell.get_text(strip=True) for cell in cells]
+        #print(row_data, "\n\n")
+        table_data.append(row_data)
         
         return {"headers": headers, "data": table_data}
 
@@ -42,6 +43,7 @@ def fetch_data(team_url):
 # Fetch data for both teams
 auburn_data = fetch_data("https://hoop-math.com/Auburn2023.php")
 georgia_tech_data = fetch_data("https://hoop-math.com/GeorgiaTech2023.php")
+#print(georgia_tech_data)
 
 # Printing the fetched data
 
