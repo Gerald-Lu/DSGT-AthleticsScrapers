@@ -44,13 +44,19 @@ for period in playByPlayData:
     writer.writerow(period.values())
 dataOut.close()
 '''
-print(playByPlayData)
-playTypes = ['Personal Foul', 'Turnover', '']
+playTypes = ['Personal Foul', 'Offensive foul', 'Turnover', 'Jumper', 'Jumper MISSED', 'Layup MISSED', '2 Pointer MISSED', 'Free Throw MISSED', '2 Pointer', '3 Pointer', '[short] time out', 'Slam Dunk', 'Foul', 'Subbing in', 'Subbing out', 'Defensive REBOUND', 'Offensive REBOUND']
+rowData = ['', '', '', '', '', '', '']
 count = 0
 for period in playByPlayData:
   if count==0:
     header = ['Time Left', 'Score', 'Play Type', 'Player 1 Involved', 'Player 2 Involved', 'Player 3 involved', 'Play Result']
     writer.writerow(header)
+    count+= 1
+  tempRow = list(period.values())
+  rowData[0] = tempRow[1]
+  rowData[1] = tempRow[0]
+  rowData[6] = tempRow[2] + " " + tempRow[3]
+  writer.writerow(rowData)
 dataOut.close()
 #print(play_by_play['periods'][0]['periodNumber'])
 
