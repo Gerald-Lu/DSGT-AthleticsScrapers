@@ -27,9 +27,15 @@ def fetch_data(input_url):
 #Prompts user for the game
 game = input("Please input game code (can be found in url of specific game; read README.md for example): ")
 
-#Play by play data combined from two periods
+#Play by play data combined from periods
 pbp_data = fetch_data(f"https://data.ncaa.com/casablanca/game/{game}/pbp.json")
-play_data = pbp_data['periods'][0]['playStats'] + pbp_data['periods'][1]['playStats']
+p1_data = pbp_data['periods'][0]['playStats']
+p2_data = pbp_data['periods'][1]['playStats']
+OT_data = []
+if len(pbp_data['periods']) >= 3:
+  for i in range(2, len(pbp_data['periods'])):
+    OT_data += pbp_data['periods'][i]['playStats']
+play_data = p1_data + p2_data + OT_data
 
 #Boxscore data
 box_data = fetch_data(f"https://data.ncaa.com/casablanca/game/{game}/boxscore.json")
@@ -69,7 +75,7 @@ data_out = open(f'playByPlay{teamA}v{teamB}{date[:7]}.csv','w')
 writer = csv.writer(data_out)
 
 #Appends headers and corresponding values to .csv file
-play_types = ['Personal Foul', 'Offensive foul', 'Technical Foul', 'Turnover', 'Jumper MISSED', 'Layup MISSED', '2 Pointer MISSED', '3 Pointer MISSED', 'Slam Dunk MISSED', 'Free Throw MISSED', 'Jumper', 'Free Throw', '2 Pointer', '3 Pointer', 'Layup', 'Slam Dunk', 'Foul', 'Subbing in', 'Subbing out', 'Defensive REBOUND', 'Offensive REBOUND', 'Assist', 'timeout', 'time out', 'steal', 'block', 'turnover']
+play_types = ['Personal Foul', 'Offensive foul', 'Technical Foul', 'Turnover', 'Jumper MISSED', 'Layup MISSED', '2 Pointer MISSED', '3 Pointer MISSED', 'Slam Dunk MISSED', 'Free Throw MISSED', 'Jumper', 'Free Throw', '2 Pointer', '3 Pointer', 'Layup', 'Slam Dunk', 'Foul', 'Subbing in', 'Subbing out', 'Defensive REBOUND', 'Offensive REBOUND', 'Assist', 'timeout', 'time out', 'steal', 'block', 'turnover', 'foul', 'Steal', 'Block', 'REBOUND', 'TIMEOUT']
 row_data = ['', '', '', '', '', '', '']
 count = 0
 for period in play_data:
@@ -102,7 +108,8 @@ for period in play_data:
   for a in range(len(row_data)):
     row_data[a] = ''
 data_out.close()
-#print(play_by_play['periods'][0]['periodNumber'])
+
+print('\nCheck folder for .csv file\n')
 
 
 
