@@ -36,7 +36,7 @@ team2_data = box_data['teams'][1]['playerStats']
 headers = ['Name', 'Position', 'Minutes Played', 'Field Goals Made', 'Three Pointers Made', 'Free Throws Made', 'Total Rebounds', 'Offensive Rebounds', 'Assists', 'Personal Fouls', 'Steals', 'Turnovers', 'Blocked Shots', 'Points']
 count = 0
 def write_csv(team_data, team_name):
-    data_out = open(f'box_score_{team_name}.csv','w')
+    data_out = open(f'box_score_{team_name}.csv','w', newline='')
     writer = csv.writer(data_out)
     count = 0
     for rows in team_data:

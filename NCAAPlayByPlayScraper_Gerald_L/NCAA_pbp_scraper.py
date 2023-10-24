@@ -69,7 +69,7 @@ Writing .csv file with data
 teamA = pbp_data['meta']['teams'][0]['sixCharAbbr']
 teamB = pbp_data['meta']['teams'][1]['sixCharAbbr']
 date = pbp_data['updatedTimestamp']
-data_out = open(f'play_by_play_{teamA}v{teamB}{date[:7]}.csv','w')
+data_out = open(f'play_by_play_{teamA}v{teamB}{date[:7]}.csv','w', newline='')
 
 #initiates a csv writer
 writer = csv.writer(data_out)
