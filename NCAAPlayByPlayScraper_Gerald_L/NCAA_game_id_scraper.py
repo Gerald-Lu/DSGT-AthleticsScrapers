@@ -24,7 +24,7 @@ game_id_data = fetch_data(f'https://data.ncaa.com/casablanca/scoreboard/basketba
 
 
 formatted_date = date.replace('/', '-', 2)
-print(formatted_date)
+
 game_ids = game_id_data['games']
 
 data_out = open(f'game_id_{formatted_date}.csv','w', newline='')
@@ -40,4 +40,6 @@ for games in game_ids:
     contents = [games['game']['url'][6:len(games['game']['url'])], games['game']['title']]
     writer.writerow(contents)
 data_out.close()
+
+print('\nCheck folder for .csv file\n')
                 
