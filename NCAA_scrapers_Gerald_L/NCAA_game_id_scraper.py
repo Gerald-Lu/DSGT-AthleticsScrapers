@@ -19,7 +19,7 @@ def fetch_data(input_url):
 
   #json data stored in 'data' variable, where we can access data in the json file as a dictionary
   return response.json()
-date = input("Please input the date you want game ids from (format: 2022/11/09)--refer to the README file if unclear: ")
+date = input("Please input the date you want game ids from (format: 2022/11/09)--refer to the INSTRUCTIONS file if unclear: ")
 game_id_data = fetch_data(f'https://data.ncaa.com/casablanca/scoreboard/basketball-men/d1/{date}/scoreboard.json')
 
 

@@ -25,7 +25,7 @@ def fetch_data(input_url):
   return response.json()
 
 #Prompts user for the game
-game = input("Please input game code (can be found in url of specific game; read README.md for example): ")
+game = input("Please input game code (can be found in url of specific game; read INSTRUCTIONS.md for example): ")
 
 #Play by play data combined from periods
 pbp_data = fetch_data(f"https://data.ncaa.com/casablanca/game/{game}/pbp.json")
