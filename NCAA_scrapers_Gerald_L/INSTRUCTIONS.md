@@ -18,6 +18,6 @@ Please input the date in the exact format.
 
 # NOTE for NCAA_pbp_scraper.py
 
-For some play by play sets, the terminology used may be different so the "Play Type" field may not populate for some plays. 
-If that is the case, please contact me so I can add the specific terminology related to that game at glu49@gatech.edu
+For some play by play sets, the terminology used may be different so the "Play Type" field may not populate for some plays (sometimes the data will say "time-out", "timeout", or "time out", which the scraper might not register). 
+If that is the case, please contact me so I can check the specific terminology related to that game at glu49@gatech.edu
 
