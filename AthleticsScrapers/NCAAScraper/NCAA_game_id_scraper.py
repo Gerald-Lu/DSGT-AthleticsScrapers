@@ -34,6 +34,6 @@ def NCAA_game_id_scraper(date):
       df.loc[len(df)] = contents
     return df
   return write_df(date)
-print(NCAA_game_id_scraper('2022/11/10'))
+
     
 

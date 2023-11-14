@@ -80,7 +80,6 @@ def NCAA_pbp_scraper(game_id):
         row_data[a] = ''
     return df
   return write_df(get_pbp_data(game_id), get_box_data(game_id))
-NCAA_pbp_scraper(5935779).to_csv("test.csv")
 
 
 

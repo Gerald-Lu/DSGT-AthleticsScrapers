@@ -52,7 +52,6 @@ def NCAA_box_scraper(game_id, team_name):
           return team2_data
         raise Exception("Name inputted incorrectly")
   return write_df(chosen_team(team_name))
-NCAA_box_scraper(6048692, "Bellarmine")
 
 
 

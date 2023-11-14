@@ -5,7 +5,7 @@ https://www.ncaa.com/game/6049153/play-by-play
 
 6049153 would be the specific code.
 
-Please input the code in the exact format.
+Please input the code in the exact format as a parameter for the function.
 
 # To use NCAA_game_id_scraper:
 
@@ -14,7 +14,7 @@ https://www.ncaa.com/scoreboard/basketball-men/d1/2022/11/10/all-conf
 
 2022/11/10 would be the specific date.
 
-Please input the date in the exact format.
+Please input the date in the exact format as a string as a parameter for the function.
 
 # NOTE for NCAA_pbp_scraper.py
 
