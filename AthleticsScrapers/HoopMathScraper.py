@@ -1,60 +1,46 @@
 import requests
 from bs4 import BeautifulSoup
+import pandas as pd
 
-# Define a function to fetch and parse data for a specific team
-def fetch_data(team_url):
-    response = requests.get(team_url)
-    if response.status_code != 200:
-        raise Exception("Failed to load page.")
-    soup = BeautifulSoup(response.content, 'html.parser')
-    
-    def parse_table(table):
-        # Extract headers
-        headers = [header.get_text(strip=True) for header in table.find_all('th')]
-        #print(headers)
-        body = table.find('tbody')
-        #print(body)
-        # Extract row data
-        #rows = body.find_all('td') 
-        #print(rows)
-        table_data = []
-        #for cells in body:
-        cells = body.find_all('td')
-            #print(cells)
-        row_data = [cell.get_text(strip=True) for cell in cells]
-        #print(row_data, "\n\n")
-        table_data.append(row_data)
+def HoopMath_scraper(team_name):
+    def fetch_data(url):
+        response = requests.get(url)
+        if response.status_code != 200:
+            raise Exception("Failed to load page.")
+        soup = BeautifulSoup(response.content, 'html.parser')
         
-        return {"headers": headers, "data": table_data}
+        def parse_table(table):
+            headers = [header.get_text(strip=True) for header in table.find_all('th')]
+            body = table.find('tbody')
+            table_data = []
 
-    # Extract the offensive and defensive transition splits tables
-    offensive_table = soup.find('table', {'id': 'TransOTable1'})
-    defensive_table = soup.find('table', {'id': 'TransDTable1'})
-    offensive_data = parse_table(offensive_table) if offensive_table else None
-    defensive_data = parse_table(defensive_table) if defensive_table else None
+            cells = body.find_all('td')
+            row_data = [cell.get_text(strip=True) for cell in cells]
+            table_data.append(row_data)
+            
+            return {"headers": headers, "data": table_data}
 
-    data = {
-        'offensive_transition': offensive_data,
-        'defensive_transition': defensive_data
-    }
-    
-    return data
+        # Extract the offensive and defensive transition splits tables
+        offensive_table = soup.find('table', {'id': 'TransOTable1'})
+        defensive_table = soup.find('table', {'id': 'TransDTable1'})
+        offensive_data = parse_table(offensive_table) if offensive_table else None
+        defensive_data = parse_table(defensive_table) if defensive_table else None
 
-# Fetch data for both teams
-auburn_data = fetch_data("https://hoop-math.com/Auburn2023.php")
-georgia_tech_data = fetch_data("https://hoop-math.com/GeorgiaTech2023.php")
-#print(georgia_tech_data)
-
-# Printing the fetched data
-
-for team, data in [("Auburn", auburn_data), ("Georgia Tech", georgia_tech_data)]:
-    print(f"\n{team} Offensive Transition Splits:")
-    print(data['offensive_transition']['headers'])
-    for row in data['offensive_transition']['data']:
-        print(row, "\n\n")
-
-    print(f"\n{team} Defensive Transition Splits:")
-    print(data['defensive_transition']['headers'])
-    for row in data['defensive_transition']['data']:
-        print(row, "\n\n")
-#print(georgia_tech_data['offensive_transition']['data'])
+        data = {
+            'offensive_transition': offensive_data,
+            'defensive_transition': defensive_data
+        }
+        
+        return data
+    def write_df(name):
+        team_data = fetch_data(f"https://hoop-math.com/{name}.php")
+        df_offense = pd.DataFrame(columns = team_data['offensive_transition']['headers'])
+        df_defense = pd.DataFrame(columns = team_data['defensive_transition']['headers'])
+        for data1, data2 in zip(team_data['offensive_transition']['data'], team_data['defensive_transition']['data']):
+            count = 0
+            for rows in range(0, int((len(data1)/9))):
+                df_offense.loc[len(df_offense)] = data1[count:count + 9]
+                df_defense.loc[len(df_defense)] = data2[count:count + 9]
+                count += 9
+        return df_offense, df_defense
+    return write_df(team_name)
