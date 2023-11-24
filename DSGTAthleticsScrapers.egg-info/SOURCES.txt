@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+DSGTAthleticsScrapers/HoopMathScraper.py
+DSGTAthleticsScrapers/NCAAScrapers.py
+DSGTAthleticsScrapers/__init__.py
+DSGTAthleticsScrapers.egg-info/PKG-INFO
+DSGTAthleticsScrapers.egg-info/SOURCES.txt
+DSGTAthleticsScrapers.egg-info/dependency_links.txt
+DSGTAthleticsScrapers.egg-info/top_level.txt
