@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: DSGTAthleticsScrapers
-Version: 0.0.1
+Version: 0.0.2
 Summary: Scrape sports data from NCAA and HOOP-MATH
 Home-page: https://github.com/Gerald-Lu/DSGT-AthleticsScrapers
 Author: DSGT Athletics Sub Team 6 - Gerald Lu, Akshar Ravichandran, Om Rajpal
@@ -11,6 +11,9 @@ Classifier: Operating System :: OS Independent
 Requires-Python: >=3.7
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Requires-Dist: requests>=2.26.0
+Requires-Dist: beautifulsoup4>=4.10.0
+Requires-Dist: pandas>=1.3.3
 
 # DSGT Athletics Web Scrapers
 
