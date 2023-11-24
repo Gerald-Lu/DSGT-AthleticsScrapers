@@ -43,6 +43,7 @@ NCAA_pbp_scraper(6049153)
 Step 3: Use the scraper as you wish! Enjoy!
 
 ## To use HoopMath_scraper: 
+
 Find the specific name and year of the team in the URL. For example: https://hoop-math.com/GeorgiaTech2023.php
 
 GeorgiaTech2023 is the specific name and year of the team.
@@ -50,6 +51,12 @@ GeorgiaTech2023 is the specific name and year of the team.
 Please input the name and year of the team as a string as a parameter for the function.
 
 Example: `HoopMath_scraper('GeorgiaTech2023')`
+```python
+from DSGTAthleticsScrapers import HoopMath_scraper
+
+#Get offensive and defensive transition splits as pandas dataframes
+HoopMath_scraper('GeorgiaTech2023')
+```
 
 This scraper returns two pandas dataframes. The first one is offensive transition splits and the second one is defensive transition splits.
 
@@ -63,6 +70,12 @@ https://www.ncaa.com/game/6049153/play-by-play
 Please input the code as a parameter for the function.
 
 Example: `NCAA_pbp_scraper(6049153)`
+```python
+from DSGTAthleticsScrapers import NCAA_pbp_scraper
+
+#Get play by play data as a pandas dataframe from NCAA
+NCAA_pbp_scraper(6049153)
+```
 
 This scraper returns a pandas dataframe with the play by play data from the specific game.
 
@@ -78,6 +91,12 @@ Determine which team you want the box score from.
 Please input the code and team name (as a string) as parameters for the function.
 
 Example: `NCAA_box_scraper(6049153, 'Georgia Tech')`
+```python
+from DSGTAthleticsScrapers import NCAA_box_scraper
+
+#Get box score data as a pandas dataframe from NCAA
+NCAA_box_scraper(6049153, 'Georgia Tech')
+```
 
 This scraper returns a pandas dataframe with the box score data of a specific team from a specific game.
 
@@ -91,6 +110,12 @@ https://www.ncaa.com/scoreboard/basketball-men/d1/2022/11/10/all-conf
 Please input the date as a string as a parameter for the function.
 
 Example: `NCAA_game_id_scraper('2022/11/10')`
+```python
+from DSGTAthleticsScrapers import NCAA_game_id_scraper
+
+#Get game ids as a pandas dataframe from NCAA
+NCAA_game_id_scraper('2022/11/10')
+```
 
 This scraper returns a pandas dataframe with the game ids of games played on the specific date.
 
